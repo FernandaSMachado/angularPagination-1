@@ -1,0 +1,48 @@
+<html ng-app="guerraTI">
+    <head>
+        <title>Angular JS - Paginação</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="col-md-12">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label>Procurar</label>
+                        <input type="text" ng-model="procurar" class="form-control" placeholder="Procurar...">
+                    </div>
+                </form>
+
+                <table class="table" ng-controller="listarDados">
+                    <thead>
+                        <tr>
+                            <th ng-click="ordenar('id')">ID</th>
+                            <th ng-click="ordenar('nome')">Nome</th>
+                            <th ng-click="ordenar('email')">E-mail</th>
+                            <th ng-click="ordenar('telefone')">Telefone</th>
+                            <th ng-click="ordenar('empresa')">Empresa</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        <tr dir-paginate="dado in dados|filter:procurar|orderBy:sortKey:reverse|itemsPerPage:10">
+                            <td>{{dado.id}}</td>
+                            <td>{{dado.nome}}</td>
+                            <td>{{dado.email}}</td>
+                            <td>{{dado.telefone}}</td>
+                            <td>{{dado.empresa}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <dir-pagination-controls max-size="10" boundary-links="true"></dir-pagination-controls>
+            </div>
+        </div>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+        <script src="app.js"></script>
+        <script src="dirPagination.js"></script>
+    </body>    
+</html>
